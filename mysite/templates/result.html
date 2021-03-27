@@ -1,0 +1,56 @@
+<!--
+ * @Author: zephyr
+ * @Date: 2020-12-16 21:38:24
+ * @LastEditors: zephyr
+ * @LastEditTime: 2020-12-17 17:34:54
+ * @FilePath: \IR_codes\mysite\templates\result.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+    <style>
+        b.match {color:red;}
+    </style>
+</head>
+
+<form action="/result/" method = "post" target="_blank" >
+
+    <table style="width:34%" align="left">
+        <tbody>
+        <tr style="border:0px">
+            <td><img src="https://s1.ax1x.com/2020/10/28/B38GdS.png" alt="logo" style="width:60px;position:absolute;left:20px;top:10px;" ></td>
+            <td>
+                <input class="form-control" type="text" style="width:830px;font-size:19px;height:33px;position:absolute;left:95px;top:30px;" align="left" name="keyword" value={{ keyword }} size="20">
+            </td>
+            <td>
+                <input class="form-control btn btn-primary" type="Submit" style="border-radius:10px;border:1px solid #4e6ef2;padding:9px;width:100px;font-size:19px;background-color:#4e6ef2;color:white;position:absolute;left:935px;top:27px;" value="搜索">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<p class="form-control btn btn-primary" style="border-radius:2px;border:1px ;padding:9px;width:820px;font-size:14px;position:absolute;left:95px;top:80px;background-color: #d9edf7;color: #3a87ad;">找到{{ num }}条结果，用时{{ time }}s </p>
+
+<table id="table-1" align="left" style="position:absolute;left:95px;top:150px;">
+    <tbody>
+    {% for lines in data %}
+        <tr>
+            <td>
+                <table id="table-1" width="840" >
+                    <tbody>
+                    <tr><td><a href={{ lines.url }} align="left" height="18px" style="font-size: 21px;color: #2440b3;">{{ lines.title|safe }}</a></td></tr>
+                    <tr><td align="left" height="12px" style="font-size: 15px;color: #A9A9A9;">{{ lines.date|safe }}</td></tr>
+                    <tr><td align="left" height="40px" style="line-height:23px;font-size: 14px;color: black">{{ lines.content|safe }}</td></tr>
+                    <tr><td><a href={{ lines.url }} align="left" height="12px" style="text-decoration: none;font-size: 14px;color: green"><i>{{ lines.url }}</i><br><br/></a></td></tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
